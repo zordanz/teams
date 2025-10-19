@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+group = 'com.hyundaimotorgroup.boot'
+version = rootProject.version
+
+dependencies {
+    // FIXME: 3. starter에 teams-spring-boot-autoconfigure 의존성 추가
+    api(project(':teams-spring-boot-autoconfigure'))
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+}
+
+bootJar {
+    enabled = false
+}

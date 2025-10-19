@@ -1,0 +1,67 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+group = 'com.hyundaimotorgroup.boot'
+version = rootProject.version
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+    toolchain {
+        // FIXME: 1-1. Java 17 버전 사용
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+dependencies {
+    // FIXME: 1-2. spring-boot-autoconfigure 의존성 추가
+    api('org.springframework.boot:spring-boot-autoconfigure')
+    api('org.springframework:spring-web')
+    implementation('jakarta.validation:jakarta.validation-api')
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}
+
+configurations {
+    compileOnly {
+        // FIXME: 1-3.spring-boot-configuration-processor 처리를 위한 annotationProcessor 활성화
+        extendsFrom annotationProcessor
+    }
+}
+
+publishing { // FIXME: 1-4. maven 배포 설정
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+}
+
+bootJar {  // FIXME: 1-5. 라이브러리이기 때문에 bootJar 비활성화
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
