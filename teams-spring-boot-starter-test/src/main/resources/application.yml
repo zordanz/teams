@@ -1,2 +1,3 @@
-# TODO: 2. incoming-webhook-url(추후 안내) 설정 추가. TeamsProperties 참고
-#teams.?=?
+# TODO: 2. incoming-webhook-url 설정 추가. TeamsProperties 참고
+teams:
+  incoming-webhook-url: 'https://hkmccloud.webhook.office.com/webhookb2/***************'
