@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-// FIXME: 2-1 TeamsAutoConfiguration 살펴보기
-@AutoConfiguration
-@ConditionalOnMissingBean(TeamsIncomingWebhookable.class)
-@EnableConfigurationProperties(TeamsProperties.class)
+// TODO: 2 AutoConfiguration 완성하기
+// Auto Configuration 설정
+// TeamsIncomingWebhookable를 구현한 Bean이 없는 경우 생성되게 설정
+// TeamsProperties를 사용할 수 있게 설정
 public class TeamsAutoConfiguration {
 
     @Bean

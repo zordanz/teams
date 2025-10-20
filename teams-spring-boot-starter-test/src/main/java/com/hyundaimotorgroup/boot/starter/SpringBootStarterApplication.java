@@ -21,7 +21,7 @@ class TeamsMessageController {
     // FIXME: 5-1. teamsTemplate 의존성 추가 from TeamsAutoConfiguration
     private final TeamsIncomingWebhookable teamsTemplate;
 
-    // TODO: 3. 해당 API로 테스트
+    // TODO: 4. 해당 API로 테스트
     /**
      * Teams에 Text 메시지를 전송하는 API
      */
